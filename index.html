@@ -15,6 +15,8 @@
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
     <!-- SCRIPTS -->
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- JQuery -->
     <script defer type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap tooltips -->
@@ -23,23 +25,36 @@
     <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script defer type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- MY JavaScript -->
+    <script defer type="text/javascript" src="js/src/main.js"></script>
+    <!-- MY Templates -->
+    <script defer type="text/javascript" src="js/templates/searchResults.js"></script>
+    <script defer type="text/javascript" src="js/templates/searchBy.js"></script>
 </head>
 
 <body>
-
-    <!-- Start your project here-->
-    <div style="height: 100vh">
-        <div class="flex-center flex-column">
-            <h1 class="animated fadeIn mb-4">Material Design for Bootstrap</h1>
-
-            <h5 class="animated fadeIn mb-3">Thank you for using our product. We're glad you're with us.</h5>
-
-            <p class="animated fadeIn text-muted">MDB Team</p>
-        </div>
+<!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">BakanaBaka</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul id="nav-choices" class="navbar-nav ml-auto">
+        </ul>
+      </div>
     </div>
-    <!-- /Start your project here-->
+  </nav>
+<!-- /NAVBAR -->
+<br><br><br>
+<!-- MAIN CONTAINER OF THE BODY-->
+  <div id="containerBody" class="container-fluid">
+    <button id="nice-butt-on" class="btn pink btn-rounded">LOAD UP SUM DEM MAN-GAHS...</button>
 
-
+  </div>
+<!-- /MAIN CONTAINER OF THE BODY-->
 </body>
 
 </html>
