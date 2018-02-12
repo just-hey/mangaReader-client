@@ -1,4 +1,4 @@
-function searchByForm(genre="Action") {
+function searchByForm() {
   return `<p>search for manga by...</p>
   <ul class="nav md-pills nav-justified pills-secondary">
     <li class="nav-item">
@@ -22,7 +22,7 @@ function searchByForm(genre="Action") {
             <input type="text" id="searchWithName" class="form-control validate">
             <label>Search by title</label>
           </div>
-          <div class="md-form form-group">
+          <div class="md-form form-group" onclick="searchForByName()">
             <a class="btn btn-primary btn-lg">go!</a>
           </div>
         </form>
