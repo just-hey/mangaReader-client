@@ -36,6 +36,32 @@ function searchForByName() {
     })
 }
 
+function searchForByGenres() {
+  console.log('you searchin with genres?')
+  let arrayOfElements = document.querySelectorAll('.checkbox:checked')
+  let genres = []
+  arrayOfElements.forEach(e => {
+    genres.push(e.value)
+  })
+  if (genres.length < 1) {
+    container.innerHTML += `<p>Select something please</p>`
+  } else {
+    axios.post(`${titlesURL}`, {genres})
+      .then(result => {
+        // console.log(result.data)
+        result.data.forEach(manga => {
+          // console.log(manga.im)
+          container.innerHTML += cardMaker(manga)
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        //need to manage error properly...
+        container.innerHTML += `<p>${err}</p>`
+      })
+  }
+}
+
 // let arrGenres = ["Action", "Adult", "Adventure", "Comedy", "Doujinshi", "Drama", "Ecchi", "Fantasy", "Gender Bender", "Harem", "Historical", "Horror", "Josei", "Martial Arts", "Mature", "Mystery", "Psychological", "Romance", "School Life", "Sci-fi", "Seinen", "Shoujo", "Shounen", "Slice of Life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"]
 //
 // const genreSelector = document.querySelector('#genreSelectors')
