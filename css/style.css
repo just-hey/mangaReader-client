@@ -3,6 +3,30 @@ body {
   /* background: #750f9d */
 }
 
+.hidden {
+  display: none;
+}
+
+#viewingImageContainer {
+  height: 100vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#imageRow {
+  height: inherit;
+}
+
+.previous {
+  height: inherit;
+  width: 50%;
+}
+
+.next {
+  height: inherit;
+  width: 50%;
+}
+
 label.radio-inline, label.checkbox-inline {
   background-color: #dcdfd4;
   cursor: pointer;

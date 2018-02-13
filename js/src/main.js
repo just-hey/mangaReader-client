@@ -3,9 +3,11 @@ const chapterURL = `http://www.mangaeden.com/api/manga/`
 const pagesURL = `http://www.mangaeden.com/api/chapter/`
 const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
 
-const container = document.querySelector('#containerBody')
+const container = document.querySelector('#searchToolContainer')
 const searchResultsContainer = document.querySelector('#searchResultsContainer')
-
+const chapterResultsContainer = document.querySelector('#chapterResultsContainer')
+const pageResultsContainer = document.querySelector('#pageResultsContainer')
+const viewingImageContainer = document.querySelector('#viewingImageContainer')
 
 document.addEventListener('DOMContentLoaded', (e) => {
   container.innerHTML += loadSplash()
@@ -16,26 +18,27 @@ function loadTheThings() {
 }
 
 function getMangaChapters() {
+  //display background loading gif?
+  //hide  'searchResultsContainer'
+  container.classList.add('hidden')
+  searchResultsContainer.classList.add('hidden')
   axios.get(`${chapterURL}${event.target.id}`)
     .then(result => {
       //got all the chapters need to call the chapter loader...
-      container.innerHTML = showChapters(result.data)
-      searchResultsContainer.innerHTML = ''
+      chapterResultsContainer.innerHTML = showChapters(result.data)
     })
     .catch(err => console.log(err))
 }
 
 function getMangaPages() {
+  //hide chapters list
+  chapterResultsContainer.classList.add('hidden')
   axios.get(`${pagesURL}${event.target.id}`)
     .then(result => {
-      container.innerHTML = showPages(result.data)
+      pageResultsContainer.innerHTML = showPages(result.data)
+
     })
     .catch(err => console.log(err))
-}
-
-function viewPage() {
-  let url = 'https://cdn.mangaeden.com/mangasimg/' + event.target.id
-  container.style.backgroundImage = 'url('+url+')'
 }
 
 function searchForByName() {
@@ -91,6 +94,9 @@ function searchForByGenres() {
   }
 }
 
+function toggleHidden() {
+
+}
 // let arrGenres = ["Action", "Adult", "Adventure", "Comedy", "Doujinshi", "Drama", "Ecchi", "Fantasy", "Gender Bender", "Harem", "Historical", "Horror", "Josei", "Martial Arts", "Mature", "Mystery", "Psychological", "Romance", "School Life", "Sci-fi", "Seinen", "Shoujo", "Shounen", "Slice of Life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"]
 //
 // const genreSelector = document.querySelector('#genreSelectors')
