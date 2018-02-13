@@ -1,5 +1,7 @@
 const titlesURL = 'http://localhost:3000/titles/'
 const chapterURL = `http://www.mangaeden.com/api/manga/`
+const pagesURL = `http://www.mangaeden.com/api/chapter/`
+const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
 
 const container = document.querySelector('#containerBody')
 const searchResultsContainer = document.querySelector('#searchResultsContainer')
@@ -21,6 +23,19 @@ function getMangaChapters() {
       searchResultsContainer.innerHTML = ''
     })
     .catch(err => console.log(err))
+}
+
+function getMangaPages() {
+  axios.get(`${pagesURL}${event.target.id}`)
+    .then(result => {
+      container.innerHTML = showPages(result.data)
+    })
+    .catch(err => console.log(err))
+}
+
+function viewPage() {
+  let url = 'https://cdn.mangaeden.com/mangasimg/' + event.target.id
+  container.style.backgroundImage = 'url('+url+')'
 }
 
 function searchForByName() {

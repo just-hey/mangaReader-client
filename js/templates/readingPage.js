@@ -1,0 +1,3 @@
+function readPage(image) {
+
+}
