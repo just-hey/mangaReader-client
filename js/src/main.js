@@ -1,21 +1,27 @@
-const titlesURL = `http://localhost:3000/titles/`
-const chapterURL = `http://www.mangaeden.com/api/manga/`
-const pagesURL = `http://www.mangaeden.com/api/chapter/`
-// const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
+//while not deployed
+const baseURL = `http://localhost:3000/`
+//while deployed
+//const baseURL = ``
+
+const chapterURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/manga/`
+const pagesURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/chapter/`
+const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
 
 const container = document.querySelector('#searchToolContainer')
-const searchResultsContainer = document.querySelector('#searchResultsContainer')
+const chapterResults = document.querySelector('#chapterResults')
 const chapterResultsContainer = document.querySelector('#chapterResultsContainer')
+const loginFormBtn = document.querySelector('#loginFormBtn')
 const pageResultsContainer = document.querySelector('#pageResultsContainer')
+const registerFormBtn = document.querySelector('#registerFormBtn')
+const searchResults = document.querySelector('#searchResults')
+const searchResultsContainer = document.querySelector('#searchResultsContainer')
+const startingButtons = document.querySelectorAll('.splashed')
 const viewingImageContainer = document.querySelector('#viewingImageContainer')
 
-const searchResults = document.querySelector('#searchResults')
-const chapterResults = document.querySelector('#chapterResults')
 
-const startingButtons = document.querySelectorAll('.splashed')
-
-const loginFormBtn = document.querySelector('#loginFormBtn')
-const registerFormBtn = document.querySelector('#registerFormBtn')
+window.navBar = document.querySelector('.navbar')
+window.user = null
+window.userToken = null
 
 
 loginFormBtn.addEventListener('click', (e) => {
@@ -34,9 +40,12 @@ registerFormBtn.addEventListener('click', (e) => {
 })
 
 function loadTheThings() {
+  $('#modalLoginForm').modal('toggle')
   startingButtons.forEach(el => {
     el.classList.add('hidden')
   })
+  let navChoices = document.querySelector('#nav-choices')
+  navChoices.innerHTML = userNavLinks()
   container.innerHTML = searchByForm()
 }
 
@@ -81,7 +90,7 @@ function searchForByName() {
   if (!titleHyphed) {
     searchResultsContainer.innerHTML += `<p>Need something to actually search.</p>`
   } else {
-    axios.get(`${titlesURL}${titleHyphed}`)
+    axios.get(`${baseURL}titles/${titleHyphed}`)
       .then(result => {
         result.data.forEach(manga => {
           searchResultsContainer.innerHTML += cardMaker(manga)
@@ -103,7 +112,7 @@ function searchForByGenres() {
   if (genres.length < 1) {
     searchResultsContainer.innerHTML += `<p>Select something please</p>`
   } else {
-    axios.post(`${titlesURL}`, {genres})
+    axios.post(`${baseURL}titles/`, {genres})
       .then(result => {
         result.data.forEach(manga => {
           searchResultsContainer.innerHTML += cardMaker(manga)
@@ -122,9 +131,9 @@ function removeHidden() {
 }
 
 function confirmLogin() {
-  let userToken = localStorage.getItem('bakaUser')
+  userToken = localStorage.getItem('bakaUser')
   if(userToken) {
-    console.log('its there')
+    loadTheThings()
   }
   else {
     console.log('uh-oh')
