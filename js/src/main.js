@@ -1,4 +1,4 @@
-const titlesURL = 'http://localhost:3000/titles/'
+const titlesURL = `http://localhost:3000/titles/`
 const chapterURL = `http://www.mangaeden.com/api/manga/`
 const pagesURL = `http://www.mangaeden.com/api/chapter/`
 const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
@@ -9,36 +9,67 @@ const chapterResultsContainer = document.querySelector('#chapterResultsContainer
 const pageResultsContainer = document.querySelector('#pageResultsContainer')
 const viewingImageContainer = document.querySelector('#viewingImageContainer')
 
-document.addEventListener('DOMContentLoaded', (e) => {
-  container.innerHTML += loadSplash()
+const searchResults = document.querySelector('#searchResults')
+const chapterResults = document.querySelector('#chapterResults')
+
+const startingButtons = document.querySelectorAll('.splashed')
+
+const loginFormBtn = document.querySelector('#loginFormBtn')
+const registerFormBtn = document.querySelector('#registerFormBtn')
+
+
+loginFormBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  let enteredEmail = document.querySelector('#defaultForm-email').value
+  let enteredPassword = document.querySelector('#defaultForm-pass').value
+  console.log('login clicked')
+  login(enteredEmail, enteredPassword)
 })
 
+registerFormBtn.addEventListener('click', (e) => {
+  e.preventDefault()
+  console.log('register clicked')
+})
+
+
 function loadTheThings() {
+  startingButtons.forEach(el => {
+    el.classList.add('hidden')
+  })
   container.innerHTML = searchByForm()
 }
 
 function getMangaChapters() {
-  //display background loading gif?
-  //hide  'searchResultsContainer'
   container.classList.add('hidden')
+  searchResults.classList.remove('hidden')
   searchResultsContainer.classList.add('hidden')
   axios.get(`${chapterURL}${event.target.id}`)
     .then(result => {
-      //got all the chapters need to call the chapter loader...
       chapterResultsContainer.innerHTML = showChapters(result.data)
     })
     .catch(err => console.log(err))
 }
 
-function getMangaPages() {
-  //hide chapters list
-  chapterResultsContainer.classList.add('hidden')
-  axios.get(`${pagesURL}${event.target.id}`)
-    .then(result => {
-      pageResultsContainer.innerHTML = showPages(result.data)
-
-    })
-    .catch(err => console.log(err))
+function getMangaPages(enteredChapter) {
+  searchResults.classList.add('hidden')
+  chapterResults.classList.remove('hidden')
+  if (!enteredChapter) {
+    chapterResultsContainer.classList.add('hidden')
+    let chapter = event.target.id
+    let pageID = document.getElementById(`${chapter}`).name
+    axios.get(`${pagesURL}${pageID}`)
+      .then(result => {
+        pageResultsContainer.innerHTML = showPages(result.data, chapter)
+      })
+      .catch(err => console.log(err))
+  } else {
+    let chapter = enteredChapter.name
+    axios.get(`${pagesURL}${chapter}`)
+      .then(result => {
+        pageResultsContainer.innerHTML = showPages(result.data, chapter)
+      })
+      .catch(err => console.log(err))
+  }
 }
 
 function searchForByName() {
@@ -47,28 +78,21 @@ function searchForByName() {
   let trimmed = mangaEntered.trim()
   let titleHyphed = trimmed.replace(/ /g,'-').toLowerCase()
   if (!titleHyphed) {
-    console.log('enter words')
     searchResultsContainer.innerHTML += `<p>Need something to actually search.</p>`
   } else {
-    // console.log(titleHyphed)
     axios.get(`${titlesURL}${titleHyphed}`)
       .then(result => {
-        // console.log(result.data)
         result.data.forEach(manga => {
-          // console.log(manga.im)
           searchResultsContainer.innerHTML += cardMaker(manga)
         })
       })
       .catch(err => {
-        console.log(err)
-        //need to manage error properly...
         searchResultsContainer.innerHTML += `<p>${err}</p>`
       })
   }
 }
 
 function searchForByGenres() {
-  console.log('you searchin with genres?')
   searchResultsContainer.innerHTML = ''
   let arrayOfElements = document.querySelectorAll('.checkbox:checked')
   let genres = []
@@ -80,22 +104,21 @@ function searchForByGenres() {
   } else {
     axios.post(`${titlesURL}`, {genres})
       .then(result => {
-        // console.log(result.data)
         result.data.forEach(manga => {
-          // console.log(manga.im)
           searchResultsContainer.innerHTML += cardMaker(manga)
         })
       })
       .catch(err => {
-        console.log(err)
-        //need to manage error properly...
         searchResultsContainer.innerHTML += `<p>${err}</p>`
       })
   }
 }
 
-function toggleHidden() {
-
+function removeHidden() {
+  let id = event.target.id + 'Container'
+  console.log(id)
+  let element = document.getElementById(id)
+  element.classList.remove('hidden')
 }
 // let arrGenres = ["Action", "Adult", "Adventure", "Comedy", "Doujinshi", "Drama", "Ecchi", "Fantasy", "Gender Bender", "Harem", "Historical", "Horror", "Josei", "Martial Arts", "Mature", "Mystery", "Psychological", "Romance", "School Life", "Sci-fi", "Seinen", "Shoujo", "Shounen", "Slice of Life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"]
 //

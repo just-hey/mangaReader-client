@@ -2,10 +2,10 @@ function searchByForm() {
   return `<p>search for manga by...</p>
   <ul class="nav md-pills nav-justified pills-secondary">
     <li class="nav-item">
-        <a class="nav-link grey" data-toggle="tab" href="#panel11" role="tab">title</a>
+        <a class="nav-link" data-toggle="tab" href="#panel11" role="tab"></i> Title</a>
     </li>
     <li class="nav-item lime">
-        <a class="nav-link" data-toggle="tab" href="#panel12" role="tab">genre</a>
+        <a class="nav-link" data-toggle="tab" href="#panel12" role="tab">Genre</a>
     </li>
     <li class="nav-item grey">
         <a class="nav-link" data-toggle="tab" href="#panel13" role="tab">bold move cotton</a>

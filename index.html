@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Manga Reader</title>
+    <title></title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -27,8 +27,8 @@
     <script defer type="text/javascript" src="js/mdb.min.js"></script>
     <!-- MY JavaScript -->
     <script defer type="text/javascript" src="js/src/main.js"></script>
+    <script defer type="text/javascript" src="js/src/login.js"></script>
     <!-- MY Templates -->
-    <script defer type="text/javascript" src="js/templates/splash.js"></script>
     <script defer type="text/javascript" src="js/templates/searchBy.js"></script>
     <script defer type="text/javascript" src="js/templates/searchResults.js"></script>
     <script defer type="text/javascript" src="js/templates/showChapters.js"></script>
@@ -53,37 +53,106 @@
   </nav>
 <!-- /NAVBAR -->
 
+
 <!-- BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
 <br><br><br>
 <!-- /BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-bold">Sign in</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="defaultForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="defaultForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="loginFormBtn" class="btn btn-default purple">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-bold">Sign up</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form">
+                    <i class="fa fa-user prefix grey-text"></i>
+                    <input type="text" id="orangeForm-name" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+                </div>
+                <div class="md-form">
+                    <i class="fa fa-envelope prefix grey-text"></i>
+                    <input type="email" id="orangeForm-email" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+                </div>
+
+                <div class="md-form">
+                    <i class="fa fa-lock prefix grey-text"></i>
+                    <input type="password" id="orangeForm-pass" class="form-control validate">
+                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button id="registerFormBtn" class="btn btn-default purple">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center splashed">
+    <a href="" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal" data-target="#modalLoginForm">Login</a>
+</div>
+
+<div class="text-center splashed">
+    <a href="" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal" data-target="#modalRegisterForm">Register</a>
+</div>
+<!-- skip it button -->
+<div class="text-center splashed">
+    <a href="" onclick="loadTheThings()" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal">No thanks</a>
+</div>
 
 <!-- MAIN CONTAINER OF THE BODY-->
-  <p id="searchTool" class="hidden">back</p>
+  <p id="searchTool" onclick="removeHidden()" class="hidden">back</p>
   <div id="searchToolContainer" class="container-fluid">
 
   </div>
 <!-- /MAIN CONTAINER OF THE BODY-->
 
 <!-- MANGA SEARCH RESULTS GO HERE -->
-  <p id="searchResults" class="hidden">back</p>
+  <p id="searchResults" onclick="removeHidden()" class="hidden">show search results</p>
   <div id="searchResultsContainer" class="container-fluid">
 
   </div>
 <!-- /MANGA SEARCH RESULTS GO HERE -->
 
 <!-- CHAPTER SEARCH RESULTS GO HERE -->
-  <p id="chapterResults" class="hidden">back</p>
+  <p id="chapterResults" onclick="removeHidden()" class="hidden">show chapters</p>
   <div id="chapterResultsContainer" class="container-fluid">
 
   </div>
 <!-- /CHAPTER SEARCH RESULTS GO HERE -->
-
-<!-- PAGE SEARCH RESULTS GO HERE -->
-  <p id="pageResults" class="hidden">back</p>
-  <div id="pageResultsContainer" class="container-fluid">
-
-  </div>
-<!-- /PAGE SEARCH RESULTS GO HERE -->
 
 <!-- VIEW IMAGE RESULTS GO HERE -->
   <p id="viewingImage" class="hidden">back</p>
