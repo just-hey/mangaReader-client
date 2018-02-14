@@ -1,7 +1,7 @@
 const titlesURL = `http://localhost:3000/titles/`
 const chapterURL = `http://www.mangaeden.com/api/manga/`
 const pagesURL = `http://www.mangaeden.com/api/chapter/`
-const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
+// const imageURL = `https://cors-anywhere.herokuapp.com/https://cdn.mangaeden.com/mangasimg/`
 
 const container = document.querySelector('#searchToolContainer')
 const searchResultsContainer = document.querySelector('#searchResultsContainer')
@@ -20,17 +20,18 @@ const registerFormBtn = document.querySelector('#registerFormBtn')
 
 loginFormBtn.addEventListener('click', (e) => {
   e.preventDefault()
-  let enteredEmail = document.querySelector('#defaultForm-email').value
-  let enteredPassword = document.querySelector('#defaultForm-pass').value
-  console.log('login clicked')
-  login(enteredEmail, enteredPassword)
+  let email = document.querySelector('#defaultForm-email').value
+  let password = document.querySelector('#defaultForm-pass').value
+  login(email, password)
 })
 
 registerFormBtn.addEventListener('click', (e) => {
   e.preventDefault()
-  console.log('register clicked')
+  let username = document.querySelector('#orangeForm-name').value
+  let email = document.querySelector('#orangeForm-email').value
+  let password = document.querySelector('#orangeForm-pass').value
+  register(username, email, password)
 })
-
 
 function loadTheThings() {
   startingButtons.forEach(el => {
@@ -116,23 +117,16 @@ function searchForByGenres() {
 
 function removeHidden() {
   let id = event.target.id + 'Container'
-  console.log(id)
   let element = document.getElementById(id)
   element.classList.remove('hidden')
 }
-// let arrGenres = ["Action", "Adult", "Adventure", "Comedy", "Doujinshi", "Drama", "Ecchi", "Fantasy", "Gender Bender", "Harem", "Historical", "Horror", "Josei", "Martial Arts", "Mature", "Mystery", "Psychological", "Romance", "School Life", "Sci-fi", "Seinen", "Shoujo", "Shounen", "Slice of Life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"]
-//
-// const genreSelector = document.querySelector('#genreSelectors')
-// // genreSelector.innerHTML = genreSelectorMaker(arrGenres)
-// //you're building the genre select boxes. check our index.html for the template
-//
-// function genreSelectorMaker(arrGenres) {
-//   let result = ''
-//   arrGenres.forEach(genre => {
-//     result += `<label class="checkbox-inline" for="Checkboxes_${genre}">
-//       <input type="checkbox" name="Checkboxes" id="Checkboxes_${genre}" value="${genre}">
-//       ${genre}
-//     </label>`
-//   })
-//   return result
-// }
+
+function confirmLogin() {
+  let userToken = localStorage.getItem('bakaUser')
+  if(userToken) {
+    console.log('its there')
+  }
+  else {
+    console.log('uh-oh')
+  }
+}
