@@ -49,10 +49,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul id="nav-choices" class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#signupModal">Signup</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalRegisterForm">Register</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#loginModal">Login</a>
+            <a class="nav-link" data-toggle="modal" data-target="#modalLoginForm">Login</a>
           </li>
         </ul>
       </div>
@@ -64,6 +64,48 @@
 <!-- BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
 <br><br><br>
 <!-- /BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
+
+<div class="modal fade" id="modalBookMarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-bold">Book Marks</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3">
+
+
+              <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Manga</th>
+                            <th>Chapter</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookMarksTable">
+                        <tr>
+                            <td>Bleach</td>
+                            <td>200</td>
+                            <td><a><i class="fa fa-remove"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>Fullmetal Alchemist</td>
+                            <td>10</td>
+                            <td><a><i class="fa fa-remove"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<!--  -->
 <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -138,6 +180,7 @@
 <div class="text-center splashed">
     <a href="" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal" data-target="#modalRegisterForm">Register</a>
 </div>
+
 <!-- skip it button -->
 <div class="text-center splashed">
     <a href="" onclick="loadTheThings()" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal">No thanks</a>

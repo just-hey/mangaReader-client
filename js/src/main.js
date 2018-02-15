@@ -39,14 +39,14 @@ registerFormBtn.addEventListener('click', (e) => {
   register(username, email, password)
 })
 
-function loadTheThings() {
-  $('#modalLoginForm').modal('toggle')
-  startingButtons.forEach(el => {
-    el.classList.add('hidden')
-  })
-  let navChoices = document.querySelector('#nav-choices')
-  navChoices.innerHTML = userNavLinks()
-  container.innerHTML = searchByForm()
+function confirmLogin() {
+  userToken = localStorage.getItem('bakaUser')
+  if(userToken) {
+    loadTheThings()
+  }
+  else {
+    console.log('uh-oh')
+  }
 }
 
 function getMangaChapters() {
@@ -80,6 +80,24 @@ function getMangaPages(enteredChapter) {
       })
       .catch(err => console.log(err))
   }
+}
+
+function loadTheThings() {
+  $('#modalLoginForm').modal('toggle')
+  startingButtons.forEach(el => {
+    el.classList.add('hidden')
+  })
+  let navChoices = document.querySelector('#nav-choices')
+  navChoices.innerHTML = userNavLinks()
+  container.innerHTML = searchByForm()
+  //now load users bookMarks into the table!  forEach object in array from DB do this >> ('#bookMarksTable').innerHTML += bookMarksTable( // object from db //)
+  // axios.get(`${baseURL}/bookMarks/`)
+}
+
+function removeHidden() {
+  let id = event.target.id + 'Container'
+  let element = document.getElementById(id)
+  element.classList.remove('hidden')
 }
 
 function searchForByName() {
@@ -121,21 +139,5 @@ function searchForByGenres() {
       .catch(err => {
         searchResultsContainer.innerHTML += `<p>${err}</p>`
       })
-  }
-}
-
-function removeHidden() {
-  let id = event.target.id + 'Container'
-  let element = document.getElementById(id)
-  element.classList.remove('hidden')
-}
-
-function confirmLogin() {
-  userToken = localStorage.getItem('bakaUser')
-  if(userToken) {
-    loadTheThings()
-  }
-  else {
-    console.log('uh-oh')
   }
 }
