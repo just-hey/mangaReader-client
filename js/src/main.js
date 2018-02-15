@@ -17,6 +17,7 @@ const searchResults = document.querySelector('#searchResults')
 const searchResultsContainer = document.querySelector('#searchResultsContainer')
 const startingButtons = document.querySelectorAll('.splashed')
 const viewingImageContainer = document.querySelector('#viewingImageContainer')
+const bookMarksTable = document.querySelector('#bookMarksTable')
 
 
 window.navBar = document.querySelector('.navbar')
@@ -45,7 +46,7 @@ function confirmLogin() {
     loadTheThings()
   }
   else {
-    console.log('uh-oh')
+    console.log('not logged in and no userToken')
   }
 }
 
@@ -90,8 +91,18 @@ function loadTheThings() {
   let navChoices = document.querySelector('#nav-choices')
   navChoices.innerHTML = userNavLinks()
   container.innerHTML = searchByForm()
-  //now load users bookMarks into the table!  forEach object in array from DB do this >> ('#bookMarksTable').innerHTML += bookMarksTable( // object from db //)
-  // axios.get(`${baseURL}/bookMarks/`)
+  axios.get(`${baseURL}bookMarks/${window.user}`)
+    .then(result => {
+      console.log('these are the users bookmarks...',result.data)
+      if(result.data.length < 1) {
+        let empty = {manga_title: '', chapter_number: 0, id: 0}
+        bookMarksTable.innerHTML = bookMarkMaker(empty)
+      } else {
+        result.data.forEach(bookMark => {
+          bookMarksTable.innerHTML = bookMarkMaker(bookMark)
+        })
+      }
+    })
 }
 
 function removeHidden() {
