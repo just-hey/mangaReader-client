@@ -6,7 +6,7 @@ function showPages(chapterInfo, chapterNum) {
   let tag = chapterInfo.images[i][1]
   let current = 'https://cdn.mangaeden.com/mangasimg/' + tag
   viewingImageContainer.style.backgroundImage = 'url('+current+')'
-
+  currentPageNum = i
   document.querySelector('#next').addEventListener('click', () => {
     i--
     if (i < min) {
@@ -16,6 +16,7 @@ function showPages(chapterInfo, chapterNum) {
     }
     let tag = chapterInfo.images[i][1]
     let current = 'https://cdn.mangaeden.com/mangasimg/' + tag
+    currentPageNum = i
     viewingImageContainer.style.backgroundImage = 'url('+current+')'
   })
 
@@ -28,6 +29,7 @@ function showPages(chapterInfo, chapterNum) {
     }
     let tag = chapterInfo.images[i][1]
     let current = 'https://cdn.mangaeden.com/mangasimg/' + tag
+    currentPageNum = i
     viewingImageContainer.style.backgroundImage = 'url('+current+')'
   })
   return

@@ -24,6 +24,12 @@ window.navBar = document.querySelector('.navbar')
 window.user = null
 window.userToken = null
 
+let currentMangaKey
+let currentMangaTitle
+let currentChapterKey
+let currentChapter
+let currentPageKey
+let currentPageNum
 
 loginFormBtn.addEventListener('click', (e) => {
   e.preventDefault()
@@ -40,6 +46,46 @@ registerFormBtn.addEventListener('click', (e) => {
   register(username, email, password)
 })
 
+function addCurrentToBookMarks() {
+  //need to get currently selected manga, chapter,
+  // currentMangaKey
+  console.log('user_id', window.user)
+  console.log('mangaTitle ', currentMangaTitle)
+  console.log('mangaKey ',currentMangaKey)
+  console.log('chapterKey ',currentChapterKey)
+  console.log('chapterName', currentChapterName)
+  console.log('last_viewed_page', currentPageKey)
+  console.log('last_viewed_page_number', currentPageNum)
+  let body = {
+    user_id: window.user,
+    manga_title : currentMangaTitle,
+    manga_title_key : currentMangaKey,
+    chapter_name : currentChapterKey,
+    chapter_number: currentChapterName,
+    last_viewed_page: currentPageKey,
+    last_viewed_page_number: currentPageNum
+  }
+  //
+  // "user_id": 7,
+  // "manga_title": "Fullmetal Alchemist",
+  // "manga_title_key": "4e70ea06c092255ef700479d",
+  // "chapter_name": "99",
+  // "chapter_number": 99,
+  // "last_viewed_page": "81/81e4c819a9a9d7f100212e80c347c58ab3bc9fe362a32c04cfefe5f4.jpg",
+  // "last_viewed_page_number": 1
+
+  axios.post(`${baseURL}bookmarks`, body)
+    .then(result => {
+      console.log(result);
+    })
+        // "user_id": 7,
+        // "manga_title": "Fullmetal Alchemist",
+        // "manga_title_key": "4e70ea06c092255ef700479d",
+        // "chapter_name": "99",
+        // "chapter_number": 99,
+
+}
+
 function confirmLogin() {
   userToken = localStorage.getItem('bakaUser')
   if(userToken) {
@@ -54,8 +100,11 @@ function getMangaChapters() {
   container.classList.add('hidden')
   searchResults.classList.remove('hidden')
   searchResultsContainer.classList.add('hidden')
+  currentMangaKey = event.target.id
+  currentMangaTitle = event.target.previousSibling.previousElementSibling.innerText
   axios.get(`${chapterURL}${event.target.id}`)
     .then(result => {
+      // console.log('getting chapters now...', result.data);
       chapterResultsContainer.innerHTML = showChapters(result.data)
     })
     .catch(err => console.log(err))
@@ -67,7 +116,10 @@ function getMangaPages(enteredChapter) {
   if (!enteredChapter) {
     chapterResultsContainer.classList.add('hidden')
     let chapter = event.target.id
+    currentChapterKey = event.target.id
+    currentChapterName = event.target.name
     let pageID = document.getElementById(`${chapter}`).name
+    currentPageKey = '.jpg'
     axios.get(`${pagesURL}${pageID}`)
       .then(result => {
         pageResultsContainer.innerHTML = showPages(result.data, chapter)
@@ -93,13 +145,12 @@ function loadTheThings() {
   container.innerHTML = searchByForm()
   axios.get(`${baseURL}bookMarks/${window.user}`)
     .then(result => {
-      console.log('these are the users bookmarks...',result.data)
       if(result.data.length < 1) {
         let empty = {manga_title: '', chapter_number: 0, id: 0}
         bookMarksTable.innerHTML = bookMarkMaker(empty)
       } else {
         result.data.forEach(bookMark => {
-          bookMarksTable.innerHTML = bookMarkMaker(bookMark)
+          bookMarksTable.innerHTML += bookMarkMaker(bookMark)
         })
       }
     })
