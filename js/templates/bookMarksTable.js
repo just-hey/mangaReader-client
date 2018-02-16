@@ -1,6 +1,5 @@
 
 function bookMarkMaker(bookMark) {
-  console.log(bookMark);
   return `<tr>
               <td>${bookMark.manga_title}</td>
               <td>${bookMark.chapter_number}</td>

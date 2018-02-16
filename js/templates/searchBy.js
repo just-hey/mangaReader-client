@@ -1,14 +1,11 @@
 function searchByForm() {
   return `<p>search for manga by...</p>
   <ul class="nav md-pills nav-justified pills-secondary">
-    <li class="nav-item">
+    <li class="nav-item purple">
         <a class="nav-link" data-toggle="tab" href="#panel11" role="tab"></i> Title</a>
     </li>
-    <li class="nav-item lime">
+    <li class="nav-item purple">
         <a class="nav-link" data-toggle="tab" href="#panel12" role="tab">Genre</a>
-    </li>
-    <li class="nav-item grey">
-        <a class="nav-link" data-toggle="tab" href="#panel13" role="tab">bold move cotton</a>
     </li>
   </ul>
 
@@ -23,7 +20,7 @@ function searchByForm() {
             <label>Search by title</label>
           </div>
           <div class="md-form form-group" onclick="searchForByName()">
-            <a class="btn btn-primary btn-lg">go!</a>
+            <a class="btn btn-default btn-lg purple">go!</a>
           </div>
         </form>
       </div>
@@ -164,22 +161,11 @@ function searchByForm() {
             </div>
           </div>
           <div class="md-form form-group" onclick="searchForByGenres()">
-            <a class="btn btn-primary btn-lg">go!</a>
+            <a class="btn btn-default btn-lg purple">go!</a>
           </div>
         </form>
       </div>
       <!--/.Panel 2-->
 
-      <!--Panel 3-->
-      <div class="tab-pane fade" id="panel13" role="tabpanel">
-          <br>
-
-          <p>PUT A BETTER "GET A RANDOM ONE" BUTTON HERE</p>
-          <div class="md-form form-group">
-            <a class="btn btn-primary btn-lg">go!</a>
-          </div>
-
-      </div>
-      <!--/.Panel 3-->
   </div>`
 }

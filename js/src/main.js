@@ -1,7 +1,7 @@
 //while not deployed
-const baseURL = `http://localhost:3000/`
+window.baseURL = `http://localhost:3000/`
 //while deployed
-//const baseURL = ``
+//const baseURL = `https://---fill-me-in---.herokuapp.com/api`
 
 const chapterURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/manga/`
 const pagesURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/chapter/`
@@ -47,15 +47,6 @@ registerFormBtn.addEventListener('click', (e) => {
 })
 
 function addCurrentToBookMarks() {
-  //need to get currently selected manga, chapter,
-  // currentMangaKey
-  console.log('user_id', window.user)
-  console.log('mangaTitle ', currentMangaTitle)
-  console.log('mangaKey ',currentMangaKey)
-  console.log('chapterKey ',currentChapterKey)
-  console.log('chapterName', currentChapterName)
-  console.log('last_viewed_page', currentPageKey)
-  console.log('last_viewed_page_number', currentPageNum)
   let body = {
     user_id: window.user,
     manga_title : currentMangaTitle,
@@ -65,25 +56,10 @@ function addCurrentToBookMarks() {
     last_viewed_page: currentPageKey,
     last_viewed_page_number: currentPageNum
   }
-  //
-  // "user_id": 7,
-  // "manga_title": "Fullmetal Alchemist",
-  // "manga_title_key": "4e70ea06c092255ef700479d",
-  // "chapter_name": "99",
-  // "chapter_number": 99,
-  // "last_viewed_page": "81/81e4c819a9a9d7f100212e80c347c58ab3bc9fe362a32c04cfefe5f4.jpg",
-  // "last_viewed_page_number": 1
-
   axios.post(`${baseURL}bookmarks`, body)
     .then(result => {
       console.log(result);
     })
-        // "user_id": 7,
-        // "manga_title": "Fullmetal Alchemist",
-        // "manga_title_key": "4e70ea06c092255ef700479d",
-        // "chapter_name": "99",
-        // "chapter_number": 99,
-
 }
 
 function confirmLogin() {
@@ -104,7 +80,6 @@ function getMangaChapters() {
   currentMangaTitle = event.target.previousSibling.previousElementSibling.innerText
   axios.get(`${chapterURL}${event.target.id}`)
     .then(result => {
-      // console.log('getting chapters now...', result.data);
       chapterResultsContainer.innerHTML = showChapters(result.data)
     })
     .catch(err => console.log(err))

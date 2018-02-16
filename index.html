@@ -1,51 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
-    <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-    <!-- SCRIPTS -->
-    <!-- Axios -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- JQuery -->
-    <script defer type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script defer type="text/javascript" src="js/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script defer type="text/javascript" src="js/mdb.min.js"></script>
-    <!-- MY JavaScript -->
-    <script defer type="text/javascript" src="js/src/main.js"></script>
-    <script defer type="text/javascript" src="js/src/login.js"></script>
-    <script defer type="text/javascript" src="js/src/logout.js"></script>
-    <!-- MY Templates -->
-    <script defer type="text/javascript" src="js/templates/searchBy.js"></script>
-    <script defer type="text/javascript" src="js/templates/searchResults.js"></script>
-    <script defer type="text/javascript" src="js/templates/showChapters.js"></script>
-    <script defer type="text/javascript" src="js/templates/showPages.js"></script>
-    <script defer type="text/javascript" src="js/templates/navlinks.js"></script>
-    <script defer type="text/javascript" src="js/templates/bookMarksTable.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- SCRIPTS -->
+  <!-- Axios -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- JQuery -->
+  <script defer type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script defer type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script defer type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script defer type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MY JavaScript -->
+  <script defer type="text/javascript" src="js/src/main.js"></script>
+  <script defer type="text/javascript" src="js/src/login.js"></script>
+  <script defer type="text/javascript" src="js/src/logout.js"></script>
+  <!-- MY Templates -->
+  <script defer type="text/javascript" src="js/templates/searchBy.js"></script>
+  <script defer type="text/javascript" src="js/templates/searchResults.js"></script>
+  <script defer type="text/javascript" src="js/templates/showChapters.js"></script>
+  <script defer type="text/javascript" src="js/templates/showPages.js"></script>
+  <script defer type="text/javascript" src="js/templates/navlinks.js"></script>
+  <script defer type="text/javascript" src="js/templates/bookMarksTable.js"></script>
 
 </head>
 
 <body>
-<!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark purple fixed-top scrolling-navbar">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">BakanaBaka</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-          aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">Manga Reader</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -60,147 +58,143 @@
       </div>
     </div>
   </nav>
-<!-- /NAVBAR -->
+  <!-- /NAVBAR -->
 
 
-<!-- BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
-<br><br><br>
-<!-- /BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
+  <!-- BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
+  <br><br><br><br>
+  <!-- /BEACUSE MY NAV BAR HOVERS ABOVE THINGS... -->
 
-<div class="modal fade" id="modalBookMarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalBookMarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-bold">Book Marks</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-
-
-              <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Manga</th>
-                            <th>Chapter</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bookMarksTable">
-
-                    </tbody>
-                </table>
-
-
-            </div>
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-bold">Book Marks</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body mx-3">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Manga</th>
+                <th>Chapter</th>
+                <th>Remove</th>
+              </tr>
+            </thead>
+            <tbody id="bookMarksTable">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
-<!--  -->
-<!--  -->
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>
+  <!--  -->
+  <!--  -->
+  <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-bold">Sign in</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                </div>
-
-                <div class="md-form">
-                    <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                </div>
-
-            </div>
-            <div id="signInMessage">
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button id="loginFormBtn" class="btn btn-default purple">Login</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-bold">Sign in</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body mx-3">
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="defaultForm-email" class="form-control validate">
+            <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="defaultForm-pass" class="form-control validate">
+            <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+          </div>
+
+        </div>
+        <div id="signInMessage">
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button id="loginFormBtn" class="btn btn-default purple">Login</button>
+        </div>
+      </div>
     </div>
-</div>
-<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  </div>
+  <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <h4 class="modal-title w-100 font-bold">Sign up</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body mx-3">
-                <div class="md-form">
-                    <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="orangeForm-name" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
-                </div>
-                <div class="md-form">
-                    <i class="fa fa-envelope prefix grey-text"></i>
-                    <input type="email" id="orangeForm-email" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
-                </div>
-
-                <div class="md-form">
-                    <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="orangeForm-pass" class="form-control validate">
-                    <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
-                </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button id="registerFormBtn" class="btn btn-default purple">Register</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-bold">Sign up</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>
-</div>
+        <div class="modal-body mx-3">
+          <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="orangeForm-name" class="form-control validate">
+            <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
+          </div>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="orangeForm-email" class="form-control validate">
+            <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
+          </div>
 
-<div class="text-center splashed">
+          <div class="md-form">
+            <i class="fa fa-lock prefix grey-text"></i>
+            <input type="password" id="orangeForm-pass" class="form-control validate">
+            <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
+          </div>
+
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button id="registerFormBtn" class="btn btn-default purple">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center splashed">
     <a href="" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal" data-target="#modalLoginForm">Login</a>
-</div>
+  </div>
 
-<div class="text-center splashed">
+  <div class="text-center splashed">
     <a href="" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal" data-target="#modalRegisterForm">Register</a>
-</div>
+  </div>
 
-<!-- skip it button -->
-<div class="text-center splashed">
-    <a href="" onclick="loadTheThings()" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal">No thanks</a>
-</div>
+  <!-- skip it button -->
+  <div class="text-center splashed">
+    <a href="" onclick="loadTheThings()" class="btn btn-default btn-rounded mb-4 purple" data-toggle="modal">Continue as Guest?</a>
+  </div>
 
-<!-- MAIN CONTAINER OF THE BODY-->
+  <!-- MAIN CONTAINER OF THE BODY-->
   <p id="searchTool" onclick="removeHidden()" class="hidden">back</p>
   <div id="searchToolContainer" class="container-fluid">
 
   </div>
-<!-- /MAIN CONTAINER OF THE BODY-->
+  <!-- /MAIN CONTAINER OF THE BODY-->
 
-<!-- MANGA SEARCH RESULTS GO HERE -->
+  <!-- MANGA SEARCH RESULTS GO HERE -->
   <p id="searchResults" onclick="removeHidden()" class="hidden">show search results</p>
   <div id="searchResultsContainer" class="container-fluid">
 
   </div>
-<!-- /MANGA SEARCH RESULTS GO HERE -->
+  <!-- /MANGA SEARCH RESULTS GO HERE -->
 
-<!-- CHAPTER SEARCH RESULTS GO HERE -->
+  <!-- CHAPTER SEARCH RESULTS GO HERE -->
   <p id="chapterResults" onclick="removeHidden()" class="hidden">show chapters</p>
   <div id="chapterResultsContainer" class="container-fluid">
 
   </div>
-<!-- /CHAPTER SEARCH RESULTS GO HERE -->
+  <!-- /CHAPTER SEARCH RESULTS GO HERE -->
 
-<!-- VIEW IMAGE RESULTS GO HERE -->
+  <!-- VIEW IMAGE RESULTS GO HERE -->
   <p id="viewingImage" class="hidden">back</p>
   <div id="viewingImageContainer" class="container-fluid">
     <div id="imageRow" class="row">
@@ -210,7 +204,7 @@
       </div>
     </div>
   </div>
-<!-- /VIEW IMAGE RESULTS GO HERE -->
+  <!-- /VIEW IMAGE RESULTS GO HERE -->
 
 </body>
 
