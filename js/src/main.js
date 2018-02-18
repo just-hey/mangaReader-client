@@ -1,7 +1,7 @@
 //while not deployed
-window.baseURL = `http://localhost:3000/`
+// window.baseURL = `http://localhost:3000/`
 //while deployed
-//const baseURL = `https://---fill-me-in---.herokuapp.com/api`
+const baseURL = `https://just-hey-mangareader.herokuapp.com/`
 
 const chapterURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/manga/`
 const pagesURL = `https://cors-anywhere.herokuapp.com/http://www.mangaeden.com/api/chapter/`
